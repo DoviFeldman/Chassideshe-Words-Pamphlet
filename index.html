@@ -184,7 +184,7 @@
         const GITHUB_CONFIG = {
             owner: 'DoviFeldman',        // Replace with your GitHub username
             repo: 'Chassideshe-Words-Pamphlet',        // Replace with your repository name
-            token: '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', // Replace with your GitHub personal access token
+            token: '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', // Replace with your GitHub personal access token
             branch: 'main',                // Branch to use (usually 'main' or 'master')
             filePath: 'words.json'         // File to store the words
         };
@@ -375,7 +375,7 @@
         }
 
         // Check if configuration is set up
-        if (GITHUB_CONFIG.owner === 'DoviFeldman' || GITHUB_CONFIG.token === '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') {
+        if (GITHUB_CONFIG.owner === 'DoviFeldman' || GITHUB_CONFIG.token === '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') {
             document.getElementById('loading').innerHTML = '<strong>Setup Required:</strong> Please configure your GitHub repository details in the script section.';
         } else {
             loadWords();
