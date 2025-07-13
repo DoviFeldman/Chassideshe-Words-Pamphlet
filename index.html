@@ -73,41 +73,6 @@
             background-color: #007bff;
             color: white;
         }
-        .token-setup {
-            background-color: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .token-field {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .token-part {
-            font-family: monospace;
-            background-color: #f8f9fa;
-            padding: 8px;
-            border-radius: 3px;
-            font-size: 14px;
-        }
-        .copy-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        .copy-btn:hover {
-            background-color: #218838;
-        }
-        #tokenInput {
-            width: 200px;
-        }
         .word-list {
             margin-top: 20px;
         }
@@ -154,20 +119,13 @@
             border-radius: 5px;
             margin: 10px 0;
         }
-        <div class="token-setup" id="tokenSetup">
-            <strong>Token Setup:</strong>
-            <div class="token-field">
-                <span>PAT token, please paste this into field without quotes: </span>
-                <span class="token-part" id="tokenPart">ghp_YOUR_TOKEN_HERE</span>
-                <button class="copy-btn" onclick="copyToken()">Copy</button>
-            </div>
-            <div class="token-field">
-                <label for="tokenInput">Enter the second half of your token:</label>
-                <input type="text" id="tokenInput" placeholder="paste second half here">
-                <button class="copy-btn" onclick="combineToken()">Apply Token</button>
-            </div>
-        </div>
-        
+        .setup-info {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -415,29 +373,12 @@
             hideLoading();
             renderWords();
         }
-function copyToken() {
-            const tokenText = document.getElementById('tokenPart').textContent;
-            navigator.clipboard.writeText(tokenText).then(() => {
-                const btn = event.target;
-                btn.textContent = 'Copied!';
-                setTimeout(() => btn.textContent = 'Copy', 2000);
-            });
-        }
 
-        function combineToken() {
-            const secondHalf = document.getElementById('tokenInput').value.trim();
-            if (secondHalf) {
-                GITHUB_CONFIG.token = 'ghp_' + secondHalf;
-                document.getElementById('tokenSetup').style.display = 'none';
-                loadWords();
-            }
-        }
         // Check if configuration is set up
-        if (GITHUB_CONFIG.owner === 'YOUR_USERNAME' || GITHUB_CONFIG.repo === 'YOUR_REPO_NAME') {
+        if (GITHUB_CONFIG.owner === 'DoviFeldman' || GITHUB_CONFIG.token === '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') {
             document.getElementById('loading').innerHTML = '<strong>Setup Required:</strong> Please configure your GitHub repository details in the script section.';
         } else {
-            document.getElementById('tokenSetup').style.display = 'block';
-            document.getElementById('loading').style.display = 'none';
+            loadWords();
         }
     </script>
 </body>
