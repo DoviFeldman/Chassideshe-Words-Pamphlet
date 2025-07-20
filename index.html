@@ -216,7 +216,8 @@
                 try {
                     const response = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filePath}`, {
                         headers: {
-                            'Authorization': `token ${GITHUB_CONFIG.token}`,
+                           // 'Authorization': `token ${GITHUB_CONFIG.token}`,
+                            'Authorization': `token ${specialkey}`, 
                             'Accept': 'application/vnd.github.v3+json'
                         }
                     });
@@ -244,7 +245,8 @@
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filePath}`, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${GITHUB_CONFIG.token}`,
+                        //'Authorization': `token ${GITHUB_CONFIG.token}`, 
+                        'Authorization': `token ${specialkey}`, 
                         'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
                     },
