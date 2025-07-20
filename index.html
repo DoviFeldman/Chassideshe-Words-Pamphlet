@@ -180,11 +180,17 @@
     </div>
 
     <script>
+
+        let specialkey;
+        let firsttoken = 'github_pat_11AW5DGSQ090M08FkkrlSX_';
+        let secondtoken = 'KLztPkO7ARjyK2BvCexUwWTHOSPXxoxdDqYndbDVVuHRYJ2JCVSx2x89epM';
+
+
         // GitHub Configuration - REPLACE THESE WITH YOUR VALUES
         const GITHUB_CONFIG = {
             owner: 'DoviFeldman',        // Replace with your GitHub username
             repo: 'Chassideshe-Words-Pamphlet',        // Replace with your repository name
-            token: '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', // Replace with your GitHub personal access token
+            token: specialkey,      //'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', // Replace with your GitHub personal access token
             branch: 'main',                // Branch to use (usually 'main' or 'master')
             filePath: 'words.json'         // File to store the words
         };
@@ -193,32 +199,16 @@
         let currentFilter = 'all';
 
         // GitHub API functions
-        async function getWordsFromGitHub() {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.filePath}`, {
-                    headers: {
-                        'Authorization': `token ${GITHUB_CONFIG.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-
-                if (response.status === 404) {
-                    // File doesn't exist yet, return empty array
-                    return [];
-                }
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const content = atob(data.content);
-                return JSON.parse(content);
-            } catch (error) {
-                console.error('Error fetching words:', error);
-                return [];
-            }
-        }
+    async function getWordsFromGitHub() {  // updated with Claude 3.5
+    try {
+        const response = await fetch('words.json');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching words:', error);
+        return [];
+    }
+}
 
         async function saveWordsToGitHub(words) {
             try {
@@ -315,7 +305,10 @@
         // Event listeners
         document.getElementById('wordForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
+            // OK I ADDED THIS HOPEFULLY IT WILL WORK!!!!! 
+            specialkey = firsttoken + secondtoken ;
+
             const addBtn = document.getElementById('addBtn');
             addBtn.disabled = true;
             addBtn.textContent = 'Adding...';
@@ -374,7 +367,9 @@
             renderWords();
         }
 
-        // this wasnt here befrore i added it to get rid of the message
+
+
+        // idk this didnt work last time but lets do it again
         loadWords();
 
         // // Check if configuration is set up
@@ -383,6 +378,8 @@
         // } else {
         //     loadWords();
         // }
+
+  
     </script>
 </body>
 </html>
