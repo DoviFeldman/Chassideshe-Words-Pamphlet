@@ -199,8 +199,8 @@
         // GitHub API functions
     async function getWordsFromGitHub() {  // updated with Claude 3.5
     try {
-        //const response = await fetch('words.json');
-        const response = await fetch(filePath); 
+        const response = await fetch('words.json');
+        //const response = await fetch(filePath); 
         const data = await response.json();
         return data;
     } catch (error) {
