@@ -374,12 +374,15 @@
             renderWords();
         }
 
-        // Check if configuration is set up
-        if (GITHUB_CONFIG.owner === 'YOUR_USERNAME' || GITHUB_CONFIG.token === 'YOUR_PERSONAL_ACCESS_TOKEN') {
-            document.getElementById('loading').innerHTML = '<strong>Setup Required:</strong> Please configure your GitHub repository details in the script section.';
-        } else {
-            loadWords();
-        }
+        // this wasnt here befrore i added it to get rid of the message
+        loadWords();
+
+        // // Check if configuration is set up
+        // if (GITHUB_CONFIG.owner === 'YOUR_USERNAME' || GITHUB_CONFIG.token === 'YOUR_PERSONAL_ACCESS_TOKEN') {
+        //     document.getElementById('loading').innerHTML = '<strong>Setup Required:</strong> Please configure your GitHub repository details in the script section.';
+        // } else {
+        //     loadWords();
+        // }
     </script>
 </body>
 </html>
